@@ -15,8 +15,14 @@ Data hails from my [SQL Course] (https://lukebarousse.com/sql). It's packed with
     4. which skills are associated with higher salaries? 
     5. what are the most optimal skills to learn? 
     
+# Tools I used
+For my deep dive into the data analyst job market, I harnessed the power of several key tools: 
 
-- Tools I used
-- The Analysis
+- SQL: The backbone of my analyssis, allowing me to query the database and unearth critical insights.  
+- PostgresSQL: The Chosen database management system, ideal of handling the job posting data. 
+- Visual Studio Code: My go-to for database management and executing SQL queries.
+- Git & GitHub: Essential for version control and sharing my sql scripts and analysis, ensuring collaboration and project tracking. 
+
+# The Analysis
 - What i learned
 - Conclusions
