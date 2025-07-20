@@ -1,4 +1,4 @@
-- Introduction
+# Introduction
 - Background
 - Tools I used
 - The Analysis
