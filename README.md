@@ -28,7 +28,7 @@ Each query for this project aimed at investigatin  specific aspects of the dataa
 ### 1. Top Paying Data Analyst Jobs 
 To identify the highest-paying roles I filtered data analyst positions by average yearly salary and location, focusing on remote jobs.  This query highlights the high paying opportunities in the field.
 
-```
+```sql
 SELECT
      job_id,
      job_title,
@@ -49,10 +49,75 @@ Where
 ORDER BY 
     salary_year_avg DESC 
 LIMIT 10
-     ; 
+     ;
+```
+###2.Top Paying Job Skills 
+The top 10 highest-paying remote data analyst jobs demand a mix of technical and analytical skills, with frequent mentions of tools and languages like SQL, Python, R, and cloud platforms such as AWS or Azure. Advanced skills such as machine learning, big data technologies (e.g., Hadoop, Spark), and data pipeline tools (e.g., Airflow, Snowflake) are commonly required. In addition, soft skills like communication and business acumen are often listed, especially in roles where analysts must explain complex findings to stakeholders or support strategic decision-making. These job listings suggest a clear trend: high pay correlates with broader technical proficiency and cross-functional impact.
+
+```sql
+
+
+WITH top_paying_jobs AS (
+    SELECT
+        job_id,
+        job_title,
+        salary_year_avg,
+        name AS Company_Name
+    FROM 
+        job_postings_fact
+    LEFT JOIN company_dim ON job_postings_fact.company_id = company_dim.company_id
+    Where 
+        job_title_short  = 'Data Analyst'
+        AND 
+        job_location ='Anywhere'
+        AND 
+        salary_year_avg IS NOT NULL
+    ORDER BY 
+        salary_year_avg DESC 
+    LIMIT 10
+)
+SELECT 
+top_paying_jobs.* ,
+skills
+FROM top_paying_jobs
+INNER JOIN skills_job_dim ON top_paying_jobs.job_id = skills_job_dim.job_id
+INNER JOIN skills_dim ON skills_job_dim.skill_id = skills_dim.skill_id
+ORDER BY 
+salary_year_avg DESC;
+
+
 ```
 
 
 
-- What i learned
+Here's the breakdown of the top daa analyst jobs in 2023: 
+- ** Wide Salary Range:** Top 10 paying data analyst roles span from $184,000 to $650,0000 indicating significant salary potential in the field.
+- ** Diverse Employers:** Companies like SmartAsset, Meta, and AT&T are among those offering high slaaries, showing a broad interest across different industries.
+- ** Job Title Variety:** There's a high diversity in job titles, from data analyst to Director of Analytics, reflecting varied roles adn specializations within data analytics. 
+
+#  What i learned
+
+Throughout this adventure, I've troublecharged my sql toolkit wtih some serious firepower: 
+-** Complex Query Crafting: ** Mastered the art of advanced SQL, merging tables like a pro and wielding with clauses for ninja-level temp table maneuvers. 
+-** Data Aggregation:** Got cozy with GROUP BY and turned aggreate functions like COUNT() AND AVG() into my data-summarizing sidekicks. 
+-** Analytical Wizardry:** Leveled up my real-world puzzle-solving skills, turning questions into actionalble, insightful SQL Queries 
+
+# Conclusions 
+
+#Insights
+
+#Closing Thoughts 
+This project enhanced my sql skills and provided valuable insights into the data analyst job market. The findings from the analysis serve as a guide to priortizing skill developement and job search efforts.
+Aspirign data analysts can better focuing on high-demand, high salary skills.  This exploration highlights the importance of continous learning and adaptation to emerging trends in the field of data analytics. 
+
+
+
+
+
+
+
+
+
+
+  
 - Conclusions
